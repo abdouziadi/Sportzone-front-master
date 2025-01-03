@@ -1,0 +1,43 @@
+<!-- Add Salle Form (Visible only to ROLE_OWNER) -->
+<div class="mb-5" *ngIf="userRole === 'ROLE_OWNER'">
+  <h2>Ajouter une Salle</h2>
+  <form (ngSubmit)="addSalledesport()">
+    <div class="form-group mb-3">
+      <input [(ngModel)]="newSalledesport.nomSalle" name="nomSalle" placeholder="Nom de la Salle" class="form-control" required />
+    </div>
+    <div class="form-group mb-3">
+      <input [(ngModel)]="newSalledesport.adresse" name="adresse" placeholder="Adresse" class="form-control" required />
+    </div>
+    <div class="form-group mb-3">
+      <input [(ngModel)]="newSalledesport.numTel" name="numTel" placeholder="Numéro de Téléphone" class="form-control" required />
+    </div>
+    <div class="form-group mb-3">
+      <input [(ngModel)]="newSalledesport.heureOuverture" name="heureOuverture" placeholder="Heure d'Ouverture" class="form-control" required />
+    </div>
+    <div class="form-group mb-3">
+      <input [(ngModel)]="newSalledesport.heureFermeture" name="heureFermeture" placeholder="Heure de Fermeture" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-success mt-3">Ajouter la Salle</button>
+  </form>
+</div>
+
+<!-- Salle Cards (Visible to everyone) -->
+<div class="row g-5">
+  <div class="col-lg-4 col-md-6" *ngFor="let salle of sallesdesport">
+    <div class="card position-relative">
+      <div class="card-body">
+        <h5 class="card-title">{{ salle.nomSalle }}</h5>
+        <p class="card-text">
+          <strong>Adresse:</strong> {{ salle.adresse }}<br />
+          <strong>Téléphone:</strong> {{ salle.numTel }}<br />
+          <strong>Heures:</strong> {{ salle.heureOuverture }} - {{ salle.heureFermeture }}
+        </p>
+        <!-- Edit and Delete buttons (Visible only to ROLE_OWNER) -->
+        <div *ngIf="userRole === 'ROLE_OWNER'">
+          <button class="btn btn-primary" (click)="editMode(salle)">Modifier</button>
+          <button class="btn btn-danger" (click)="deleteSalledesport(salle.id!)">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

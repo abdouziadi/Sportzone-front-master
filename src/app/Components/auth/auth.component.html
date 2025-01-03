@@ -1,0 +1,138 @@
+<div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center auth-container">
+  <div class="row g-0 w-100 justify-content-center">
+    <!-- Toggle Buttons -->
+    <div class="col-12 text-center mb-4">
+      <button class="btn btn-primary me-2" (click)="showRegister = true">Register</button>
+      <button class="btn btn-secondary" (click)="showRegister = false">Login</button>
+    </div>
+
+    <!-- Sign Up Section (Register) -->
+    <div class="col-lg-6 bg-dark text-light p-5" *ngIf="showRegister">
+      <h2 class="text-center mb-4">Sign Up</h2>
+      <form (submit)="handleSignup()">
+        <div class="row g-3">
+          <div class="col-12">
+            <input 
+              type="text" 
+              class="form-control bg-light border-0 px-4" 
+              placeholder="Your Username" 
+              [(ngModel)]="signupForm.username" 
+              name="username" 
+              required 
+              style="height: 55px;">
+          </div>
+          <div class="col-12">
+            <input 
+              type="email" 
+              class="form-control bg-light border-0 px-4" 
+              placeholder="Your Email" 
+              [(ngModel)]="signupForm.email" 
+              name="email" 
+              required 
+              style="height: 55px;">
+          </div>
+          <div class="col-12">
+            <input 
+              type="password" 
+              class="form-control bg-light border-0 px-4" 
+              placeholder="Your Password" 
+              [(ngModel)]="signupForm.password" 
+              name="password" 
+              required 
+              style="height: 55px;">
+          </div>
+          <div class="col-12">
+            <input 
+              type="text" 
+              class="form-control bg-light border-0 px-4" 
+              placeholder="Your Address" 
+              [(ngModel)]="signupForm.adresse" 
+              name="adresse" 
+              required 
+              style="height: 55px;">
+          </div>
+
+          <!-- Role Selection -->
+          <div class="col-12">
+            <label for="role" class="form-label">Choose Role</label>
+            <div class="form-check">
+              <input 
+                class="form-check-input" 
+                type="radio" 
+                id="roleUser" 
+                name="role" 
+                [(ngModel)]="signupForm.roles[0]" 
+                value="USER" 
+                required>
+              <label class="form-check-label" for="roleUser">
+                User
+              </label>
+            </div>
+            <div class="form-check">
+              <input 
+                class="form-check-input" 
+                type="radio" 
+                id="roleOwner" 
+                name="role" 
+                [(ngModel)]="signupForm.roles[0]" 
+                value="OWNER" 
+                required>
+              <label class="form-check-label" for="roleOwner">
+                Owner
+              </label>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-primary w-100 py-3" type="submit">Sign Up</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Login Section -->
+    <div class="col-lg-6 bg-secondary text-light p-5" *ngIf="!showRegister && !isLoggedIn">
+      <h2 class="text-center mb-4">Login</h2>
+      <form (submit)="handleLogin()">
+        <div class="row g-3">
+          <div class="col-12">
+            <input 
+              type="text" 
+              class="form-control bg-light border-0 px-4" 
+              placeholder="Your Username" 
+              [(ngModel)]="loginForm.username" 
+              name="login-username" 
+              required 
+              style="height: 55px;">
+          </div>
+          <div class="col-12">
+            <input 
+              type="password" 
+              class="form-control bg-light border-0 px-4" 
+              placeholder="Your Password" 
+              [(ngModel)]="loginForm.password" 
+              name="login-password" 
+              required 
+              style="height: 55px;">
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary w-100 py-3" type="submit">Login</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- User Section -->
+    <div class="col-lg-6 bg-success text-light p-5" *ngIf="isLoggedIn">
+      <h2 class="text-center mb-4">Welcome, {{ userDetails?.username }}</h2>
+      <p><strong>Email:</strong> {{ userDetails?.email }}</p>
+      <p><strong>Roles:</strong> {{ userDetails?.roles.join(', ') }}</p>
+      <button class="btn btn-danger w-100 py-3" (click)="handleLogout()">Logout</button>
+    </div>
+
+    <!-- Error Message -->
+    <div class="col-12 text-center text-danger mt-3" *ngIf="errorMessage">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+.client-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .add-client,
+  .client-list {
+    margin-bottom: 20px;
+  }
+  
+  .add-client form input {
+    margin-right: 10px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .table th {
+    background-color: #f4f4f4;
+    text-align: left;
+  }
+  
+  button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

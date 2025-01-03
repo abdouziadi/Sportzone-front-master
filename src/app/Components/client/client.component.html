@@ -1,0 +1,41 @@
+    <!-- Liste des clients -->
+    <div class="client-list">
+      <h3>Liste des Clients</h3>
+  
+      <div *ngIf="clients.length === 0">
+        <p>Aucun client trouvé.</p>
+      </div>
+  
+      <table *ngIf="clients.length > 0" class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Adresse</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clients">
+            <td *ngIf="editingClient?.id !== client.id">{{ client.nom }}</td>
+            <td *ngIf="editingClient?.id !== client.id">{{ client.prenom }}</td>
+            <td *ngIf="editingClient?.id !== client.id">{{ client.email }}</td>
+            <td *ngIf="editingClient?.id !== client.id">{{ client.adresse }}</td>
+  
+            <td *ngIf="editingClient && editingClient.id === client.id">
+              <input type="text" [(ngModel)]="editingClient.nom" />
+              <input type="text" [(ngModel)]="editingClient.prenom" />
+              <input type="email" [(ngModel)]="editingClient.email" />
+              <input type="text" [(ngModel)]="editingClient.adresse" />
+            </td>
+  
+            <td>
+              <button *ngIf="editingClient?.id !== client.id" (click)="editClient(client)">Modifier</button>
+              <button *ngIf="editingClient?.id === client.id" (click)="updateClient()">Enregistrer</button>
+              <button (click)="deleteClient(client.id)">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
