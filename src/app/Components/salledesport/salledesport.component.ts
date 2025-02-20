@@ -102,6 +102,17 @@ export class SallesSportComponent implements OnInit {
       alert('You must be an OWNER to edit a salle.');
     }
   }
+  showMode(salle: Salledesport): void {
+    const details = `
+      Nom de la salle: ${salle.nomSalle}
+      Adresse: ${salle.adresse}
+      Numéro de téléphone: ${salle.numTel}
+      Heures d'ouverture: ${salle.heureOuverture}
+      Heures de fermeture: ${salle.heureFermeture}
+    `;
+    alert(details);
+  }
+
 
   saveEdit(): void {
     if (this.editSalledesport) {

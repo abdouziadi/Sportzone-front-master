@@ -62,7 +62,10 @@ export class HeaderComponent implements OnInit {
   goToSalleDeSport() {
     this.router.navigate(['/salledesport']);  // Redirect to the /salledesport page
   }
-
+  // Method to redirect to the salle de sport page
+  goToAbonnements() {
+    this.router.navigate(['/abonnements']);  
+  }
   ngOnInit() {
     this.checkLoginStatus();  // Check login status when the component is initialized
   }
